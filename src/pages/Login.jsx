@@ -21,7 +21,7 @@ export const Login = () => {
           LOG IN
         </button>
       </div>
-      <p className="mt-4">
+      <p className="mt-4 dark:text-white">
         Didn't have an account yet?{' '}
         <Link
           className="text-accentLight font-bold underline decoration-solid"
