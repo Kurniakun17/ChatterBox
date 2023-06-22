@@ -6,3 +6,7 @@
 .logo{
   -webkit-text-stroke: 2px #6593CD;
 }
+
+.logo-small{
+  -webkit-text-stroke: 1px #6593CD;
+}

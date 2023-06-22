@@ -1,0 +1,32 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTheme } from '../hooks/useTheme';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+
+export const Navbar = () => {
+  const [theme, setTheme, toggleTheme] = useTheme();
+
+  return (
+    <div className="w-full flex justify-between bg-transparent px-6 py-4 border-b-[1px] border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
+      <Link to="/home" className="text-white text-3xl font-bold logo-small">
+        ChatterBox
+      </Link>
+      <button onClick={toggleTheme}>
+        {theme === 'light' ? (
+          <FontAwesomeIcon
+            className="text-bodyTextLight"
+            size="xl"
+            icon={faMoon}
+          />
+        ) : (
+          <FontAwesomeIcon
+            className="text-bodyTextDark"
+            size="xl"
+            icon={faSun}
+          />
+        )}
+      </button>
+    </div>
+  );
+};
