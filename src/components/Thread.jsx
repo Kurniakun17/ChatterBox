@@ -18,7 +18,6 @@ export const Thread = ({
   isUpVote,
   isDownVote,
 }) => {
-  
   return (
     <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
       <Link to={`/thread/${id}`}>
@@ -49,12 +48,12 @@ export const Thread = ({
               {totalComments}
             </h4>
           </div>
-          
           <Vote
             threadId={id}
             isUpVote={isUpVote}
             isDownVote={isDownVote}
             score={score}
+            caller='THREAD'
           />
         </div>
         <div className="flex gap-2">

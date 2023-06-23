@@ -23,6 +23,7 @@ export const DetailThread = ({ authUser }) => {
     return <h1>Loading ...</h1>;
   }
 
+  // console.log(thread);
 
   return (
     <>
@@ -49,9 +50,14 @@ export const DetailThread = ({ authUser }) => {
               isUpVote={thread.upVotesBy.includes(authUser.id)}
               isDownVote={thread.downVotesBy.includes(authUser.id)}
               threadId={thread.id}
+              caller="DETAIL_THREAD"
             />
             <div className="flex gap-2">
-              <img src={thread.owner.avatar} alt="" className="w-6 h-6 rounded-full" />
+              <img
+                src={thread.owner.avatar}
+                alt=""
+                className="w-6 h-6 rounded-full"
+              />
               <h4 className="font-bold text-bodyTextLight dark:text-bodyTextDark">
                 {thread.owner.name}
               </h4>
@@ -81,11 +87,15 @@ export const DetailThread = ({ authUser }) => {
         {thread.comments.map((comment, index) => (
           <Comment
             key={`comment-${index}`}
+            threadId={id}
             author={comment.author}
             createdAt={comment.createdAt}
             content={comment.content}
             score={comment.upVotesBy.length - comment.downVotesBy.length}
             owner={comment.owner}
+            commentId={comment.id}
+            isUpVote={comment.upVotesBy.includes(authUser.id)}
+            isDownVote={comment.downVotesBy.includes(authUser.id)}
           />
         ))}
       </div>

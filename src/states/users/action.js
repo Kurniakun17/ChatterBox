@@ -4,7 +4,7 @@ const ActionType = {
   RECIEVE_USERS: 'RECIEVE_USERS',
 };
 
-const receiveUsersActionCreator = (users) => {
+const receiveUsersActionCreator = ({users}) => {
   return {
     type: ActionType.RECIEVE_USERS,
     payload: {

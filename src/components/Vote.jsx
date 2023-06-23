@@ -1,20 +1,42 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
+  asyncDownVoteComment,
   asyncDownVoteDetailThread,
+  asyncUpVoteComment,
   asyncUpVoteDetailThread,
 } from '../states/detailThread/action';
+import {
+  asyncDownVoteThread,
+  asyncUpVoteThread,
+} from '../states/threads/action';
 
-export const Vote = ({ isUpVote, isDownVote, score, threadId, type }) => {
+export const Vote = ({
+  isUpVote,
+  isDownVote,
+  score,
+  threadId,
+  commentId = null,
+  caller,
+}) => {
   const dispatch = useDispatch();
 
   const toggleVote = (type) => {
     if (type === 'UPVOTE_CLICK') {
-      return dispatch(asyncUpVoteDetailThread({ threadId }));
+      caller === 'DETAIL_THREAD' &&
+        dispatch(asyncUpVoteDetailThread({ threadId }));
+      caller === 'THREAD' && dispatch(asyncUpVoteThread({ threadId }));
+      caller === 'COMMENT' &&
+        dispatch(asyncUpVoteComment({ threadId, commentId }));
+      return;
     }
-    dispatch(asyncDownVoteDetailThread({ threadId }));
+    caller === 'DETAIL_THREAD' &&
+      dispatch(asyncDownVoteDetailThread({ threadId }));
+    caller === 'THREAD' && dispatch(asyncDownVoteThread({ threadId }));
+    caller === 'COMMENT' &&
+      dispatch(asyncDownVoteComment({ threadId, commentId }));
   };
 
   return (

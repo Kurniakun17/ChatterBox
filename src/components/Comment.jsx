@@ -3,7 +3,16 @@ import { Vote } from './Vote';
 import parser from 'html-react-parser';
 import TimeAgo from 'timeago-react';
 
-export const Comment = ({ createdAt, content, score, owner }) => {
+export const Comment = ({
+  threadId,
+  commentId,
+  createdAt,
+  content,
+  score,
+  owner,
+  isUpVote,
+  isDownVote,
+}) => {
   return (
     <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
       <div className="flex justify-between">
@@ -25,7 +34,14 @@ export const Comment = ({ createdAt, content, score, owner }) => {
         {parser(content)}
       </p>
       <div className="flex items-center justify-between">
-        <Vote score={score} />
+        <Vote
+          score={score}
+          commentId={commentId}
+          caller="COMMENT"
+          isUpVote={isUpVote}
+          isDownVote={isDownVote}
+          threadId={threadId}
+        />
         <button className="text-bodyTextLight dark:text-bodyTextDark font-bold">
           Reply
         </button>

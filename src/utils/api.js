@@ -90,7 +90,6 @@ export const APIupVoteThread = async ({ threadId }) => {
 
 export const APIdownVoteThread = async ({ threadId }) => {
   try {
-    console.log('kochi');
     const res = await axios.post(
       `${BASE_URL}/threads/${threadId}/down-vote`,
       {},
@@ -105,6 +104,42 @@ export const APIneutralizeVoteThread = async ({ threadId }) => {
   try {
     const res = await axios.post(
       `${BASE_URL}/threads/${threadId}/neutral-vote`,
+      {},
+      { headers: { Authorization: `Bearer ${getAccessToken()}` } }
+    );
+  } catch (error) {
+    console.log(error.respond);
+  }
+};
+
+export const APIupVoteComment = async ({ threadId, commentId }) => {
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/up-vote`,
+      {},
+      { headers: { Authorization: `Bearer ${getAccessToken()}` } }
+    );
+  } catch (error) {
+    console.log(error.respond);
+  }
+};
+
+export const APIdownVoteComment = async ({ threadId, commentId }) => {
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/down-vote`,
+      {},
+      { headers: { Authorization: `Bearer ${getAccessToken()}` } }
+    );
+  } catch (error) {
+    console.log(error.respond);
+  }
+};
+
+export const APIneutralizeVoteComment = async ({ threadId, commentId }) => {
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`,
       {},
       { headers: { Authorization: `Bearer ${getAccessToken()}` } }
     );

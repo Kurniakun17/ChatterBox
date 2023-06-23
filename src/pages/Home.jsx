@@ -9,7 +9,7 @@ import { asyncPopulateThreadAndUsers } from '../states/shared/action';
 
 export const Home = ({ authUser }) => {
   const users = useSelector((state) => state.users);
-  const thread = useSelector((state) => state.thread);
+  const threads = useSelector((state) => state.threads);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export const Home = ({ authUser }) => {
       <div className="flex flex-col gap-4 ">
         <Header name={authUser.name} />
         <div className="border-t-2 border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)] rounded-t-3xl py-4">
-          <LatestThread users={users} thread={thread} />
+          <LatestThread users={users} authUser={authUser} threads={threads} />
         </div>
       </div>
       <button
