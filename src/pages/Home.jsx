@@ -1,19 +1,28 @@
-import React from 'react';
-import { Navbar } from '../components/Navbar';
+import React, { useEffect } from 'react';
 import { LatestThread } from '../components/LatestThread';
 import { Header } from '../components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncPopulateThreadAndUsers } from '../states/shared/action';
 
 export const Home = ({ authUser }) => {
+  const users = useSelector((state) => state.users);
+  const thread = useSelector((state) => state.thread);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(asyncPopulateThreadAndUsers());
+  }, []);
+
   return (
     <>
       <div className="flex flex-col gap-4 ">
         <Header name={authUser.name} />
         <div className="border-t-2 border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)] rounded-t-3xl py-4">
-          <LatestThread />
+          <LatestThread users={users} thread={thread} />
         </div>
       </div>
       <button

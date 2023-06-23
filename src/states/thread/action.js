@@ -2,7 +2,7 @@ export const ActionType = {
   RECEIVED_THREAD: 'RECEIVED_THREAD',
 };
 
-export const receivedThreadActionCreator = (thread) => {
+export const receiveThreadActionCreator = (thread) => {
   return {
     type: ActionType.RECEIVED_THREAD,
     payload: {
@@ -10,3 +10,5 @@ export const receivedThreadActionCreator = (thread) => {
     },
   };
 };
+
+

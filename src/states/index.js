@@ -4,6 +4,7 @@ import userReducer from './users/reducer';
 import authUserReducer from './authUser/reducer';
 import { preloadReducer } from './preload/reducer';
 import { themeReducer } from './theme/reducer';
+import detailThreadReducer from './detailThread/reducer';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     authUser: authUserReducer,
     preload: preloadReducer,
     theme: themeReducer,
+    detailThread: detailThreadReducer
   },
 });
 

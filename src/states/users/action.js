@@ -16,12 +16,11 @@ const receiveUsersActionCreator = (users) => {
 const asyncRegisterUser = ({ name, email, password }) => {
   return async () => {
     try {
-      const res = await APIRegister({name, email, password});
+      await APIRegister({ name, email, password });
     } catch (error) {
-      console.log(error);
       return error;
     }
   };
-}
+};
 
 export { ActionType, receiveUsersActionCreator, asyncRegisterUser };

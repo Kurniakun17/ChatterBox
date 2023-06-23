@@ -1,9 +1,15 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { APIdownVoteThread } from '../utils/api';
 
-export const Vote = ({ vote }) => {
-  const [voteState, toggleVote] = useVote();
+export const Vote = ({ isUpVote, isDownVote, score, threadId, type }) => {
+  const [voteState, toggleVote] = useVote({
+    isUpVote,
+    isDownVote,
+    threadId,
+    type,
+  });
 
   return (
     <div className="flex items-center justify-center gap-2 ">
@@ -20,7 +26,7 @@ export const Vote = ({ vote }) => {
           icon={faChevronUp}
         />
       </button>
-      <h4 className="text-bodyTextLight dark:text-bodyTextDark">{vote}</h4>
+      <h4 className="text-bodyTextLight dark:text-bodyTextDark">{score}</h4>
       <button
         aria-label="down vote"
         onClick={() => {
@@ -38,18 +44,26 @@ export const Vote = ({ vote }) => {
   );
 };
 
-const useVote = () => {
+const useVote = ({ isUpVote, isDownVote, threadId, type }) => {
   const [voteState, setVoteState] = useState(null);
+
+  useEffect(() => {
+    if (isUpVote) setVoteState('upvote');
+    if (isDownVote) setVoteState('downvote');
+  }, []);
 
   const toggleVote = (action) => {
     if (action === 'UPVOTE_CLICK') {
-      (voteState === 'downvote' || voteState === null) &&
+      if (voteState === 'downvote' || voteState === null) {
         setVoteState('upvote');
+      }
+      APIdownVoteThread({ threadId });
       voteState === 'upvote' && setVoteState(null);
       return;
     }
     (voteState === 'upvote' || voteState === null) && setVoteState('downvote');
     voteState === 'downvote' && setVoteState(null);
+    apiDown;
   };
 
   return [voteState, toggleVote, setVoteState];
