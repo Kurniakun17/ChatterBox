@@ -4,6 +4,7 @@ import { Thread } from './Thread';
 export const LatestThread = () => {
   const mockObj = [
     {
+      id: '1',
       title: 'How to make a good Sandwich',
       createdAt: '2 days ago',
       body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligulaas asdasdadasds asda sdasd asdasdasdasdasd asdasdaasd asdasdasd dsfadasd',
@@ -12,6 +13,7 @@ export const LatestThread = () => {
       totalComments: 28,
     },
     {
+      id: '1',
       title: 'How to make a good Sandwich',
       createdAt: '2 days ago',
       body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligulaas asdasdadasds asda sdasd asdasdasdasdasd asdasdaasd asdasdasd dsfadasd',
@@ -20,6 +22,7 @@ export const LatestThread = () => {
       totalComments: 28,
     },
     {
+      id: '1',
       title: 'How to make a good Sandwich',
       createdAt: '2 days ago',
       body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligulaas asdasdadasds asda sdasd asdasdasdasdasd asdasdaasd asdasdasd dsfadasd',
@@ -28,6 +31,7 @@ export const LatestThread = () => {
       totalComments: 28,
     },
     {
+      id: '1',
       title: 'How to make a good Sandwich',
       createdAt: '2 days ago',
       body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligulaas asdasdadasds asda sdasd asdasdasdasdasd asdasdaasd asdasdasd dsfadasd',
@@ -36,6 +40,7 @@ export const LatestThread = () => {
       totalComments: 28,
     },
     {
+      id: '1',
       title: 'How to make a good Sandwich',
       createdAt: '2 days ago',
       body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligulaas asdasdadasds asda sdasd asdasdasdasdasd asdasdaasd asdasdasd dsfadasd',
@@ -44,6 +49,7 @@ export const LatestThread = () => {
       totalComments: 28,
     },
   ];
+
   return (
     <div className="flex flex-col gap-3 w-[90%] max-w-[500px] m-auto  ">
       <h2 className="font-bold dark:text-white text-2xl">Latest Thread</h2>

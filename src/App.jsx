@@ -5,6 +5,7 @@ import { Register } from './pages/Register';
 import { NotFound } from './pages/NotFound';
 import { Home } from './pages/Home';
 import { NewThread } from './pages/NewThread';
+import { DetailThread } from './pages/DetailThread';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/addThread" element={<NewThread />} />
+        <Route path="/thread/:id" element={<DetailThread />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>
