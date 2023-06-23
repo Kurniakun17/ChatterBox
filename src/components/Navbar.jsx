@@ -3,14 +3,23 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import {
+  asyncUnsetAuthUser,
+  unsetAuthUserActionCreator,
+} from '../states/authUser/action';
+import { changeThemeActionCreator } from '../states/theme/action';
 
-export const Navbar = () => {
-  const [theme, setTheme, toggleTheme] = useTheme();
-  const name = '';
+export const Navbar = ({ name, theme }) => {
+  const dispatch = useDispatch();
 
-  const onLogoutHandler = () => {};
+  const onLogoutHandler = () => {
+    dispatch(asyncUnsetAuthUser(unsetAuthUserActionCreator()));
+  };
 
-  const onLoginHandler = () => {};
+  const toggleTheme = () => {
+    dispatch(changeThemeActionCreator(theme));
+  };
 
   return (
     <div className="w-full flex items-center justify-between bg-transparent px-6 py-4 border-b-[1px] border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
@@ -38,13 +47,10 @@ export const Navbar = () => {
             className="dark:text-white underline p-2"
             onClick={onLogoutHandler}
           >
-            <Link to={'/login'}>LOGOUT</Link>
+            LOGOUT
           </button>
         ) : (
-          <button
-            className="dark:text-white underline p-2"
-            onClick={onLoginHandler}
-          >
+          <button className="dark:text-white underline p-2">
             <Link to={'/login'}>LOGIN</Link>
           </button>
         )}

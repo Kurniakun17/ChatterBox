@@ -17,8 +17,8 @@ const asyncRegisterUser = ({ name, email, password }) => {
   return async () => {
     try {
       const res = await APIRegister({name, email, password});
-      console.log(res);
     } catch (error) {
+      console.log(error);
       return error;
     }
   };

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useInput } from '../hooks/useInput';
 
-export const LoginInput = () => {
-  const [name, setName] = useInput();
+export const LoginInput = ({ onLoginHandler }) => {
+  const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
 
   return (
@@ -10,12 +10,12 @@ export const LoginInput = () => {
       <div className="flex flex-col gap-3">
         <input
           className="bg-thirdElevationLight placeholder:font-bold font-bold  dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm md:text-base dark:text-primaryLight"
-          value={name}
+          value={email}
           onChange={(e) => {
-            setName(e);
+            setEmail(e);
           }}
           type="text"
-          placeholder="NAME"
+          placeholder="EMAIL"
         />
         <input
           className="bg-thirdElevationLight placeholder:font-bold font-bold  dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm md:text-base dark:text-primaryLight"
@@ -27,6 +27,14 @@ export const LoginInput = () => {
           placeholder="PASSWORD"
         />
       </div>
+      <button
+        onClick={() => {
+          onLoginHandler(email, password);
+        }}
+        className="bg-accentLight dark:bg-accentLight text-white w-full rounded-3xl p-2 font-bold"
+      >
+        LOG IN
+      </button>
     </>
   );
 };

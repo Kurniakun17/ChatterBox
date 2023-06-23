@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 export const Header = ({ name }) => {
-  name = null;
   return (
     <div className="flex justify-between my-6 w-[90%] max-w-[500px] xl:max-w-[800px] mx-auto">
       <div>
@@ -13,7 +12,9 @@ export const Header = ({ name }) => {
           <h2 className="font-bold text-2xl dark:text-white">Hi, Guest</h2>
         )}
         <p className="text-bodyTextLight dark:text-bodyTextDark">
-          {name ? "Find topics that you want to read" : "Please login if you want to interact with the thread"}
+          {name
+            ? 'Find topics that you want to read'
+            : 'Please login if you want to interact with the thread'}
         </p>
       </div>
       <button className="dark:text-white">

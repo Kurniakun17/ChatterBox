@@ -6,13 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-export const Home = () => {
+export const Home = ({ authUser }) => {
   const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col gap-4 ">
-        <Navbar />
-        <Header name="Kurnia" />
+        <Header name={authUser.name} />
         <div className="border-t-2 border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)] rounded-t-3xl py-4">
           <LatestThread />
         </div>
