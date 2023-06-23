@@ -6,6 +6,7 @@ import {
   APIneutralizeVoteComment,
   APIdownVoteComment,
   APIupVoteComment,
+  APIcreateComment,
 } from '../../utils/api';
 
 const ActionType = {
@@ -14,6 +15,7 @@ const ActionType = {
   DOWNVOTE_DETAIL_THREAD: 'DOWNVOTE_DETAIL_THREAD',
   UPVOTE_COMMENT: 'UPVOTE_COMMENT',
   DOWNVOTE_COMMENT: 'DOWNVOTE_COMMENT',
+  ADD_COMMENT: 'ADD_COMMENT',
 };
 
 const receiveDetailThreadActionCreator = (detailThread) => {
@@ -61,6 +63,15 @@ const downVoteCommentActionCreator = ({ userId, commentId }) => {
     payload: {
       userId,
       commentId,
+    },
+  };
+};
+
+const addCommentActionCreator = ({ comment }) => {
+  return {
+    type: ActionType.ADD_COMMENT,
+    payload: {
+      comment,
     },
   };
 };
@@ -157,6 +168,13 @@ const asyncDownVoteComment = ({ threadId, commentId }) => {
   };
 };
 
+const asyncAddComment = ({ threadId, content }) => {
+  return async (dispatch) => {
+    const { comment } = await APIcreateComment({ threadId, content });
+    dispatch(addCommentActionCreator({ comment }));
+  };
+};
+
 export {
   ActionType,
   asyncReceiveDetailThread,
@@ -164,4 +182,5 @@ export {
   asyncDownVoteDetailThread,
   asyncUpVoteComment,
   asyncDownVoteComment,
+  asyncAddComment,
 };

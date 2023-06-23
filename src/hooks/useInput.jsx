@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
-export const useInput = () => {
-  const [value, setValue] = useState('');
+export const useInput = (initialValue = '') => {
+  const [value, setValue] = useState(initialValue);
 
   const onChangeHandler = ({ target }) => {
     setValue(target.value);
   };
 
-  return [value, onChangeHandler];
+  const onDivChangeHandler = ({ target }) => {
+    setValue(target.innerHTML);
+  };
+
+  return [value, onChangeHandler, onDivChangeHandler];
 };

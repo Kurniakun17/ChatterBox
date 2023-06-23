@@ -31,7 +31,8 @@ const detailThreadReducer = (thread = {}, action = {}) => {
     case ActionType.UPVOTE_COMMENT:
       userId = action.payload.userId;
       commentId = action.payload.commentId;
-      const obj = {
+
+      return {
         ...thread,
         comments: thread.comments.map((comment) => {
           if (comment.id === commentId) {
@@ -48,7 +49,11 @@ const detailThreadReducer = (thread = {}, action = {}) => {
           return comment;
         }),
       };
-
+    case ActionType.ADD_COMMENT:
+      const obj = {
+        ...thread,
+        comments: [...thread.comments, action.payload.comment],
+      };
       console.log(obj);
       return obj;
     case ActionType.DOWNVOTE_COMMENT:

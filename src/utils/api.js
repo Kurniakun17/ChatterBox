@@ -147,3 +147,18 @@ export const APIneutralizeVoteComment = async ({ threadId, commentId }) => {
     console.log(error.respond);
   }
 };
+
+export const APIcreateComment = async ({ threadId, content }) => {
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/threads/${threadId}/comments`,
+      {
+        content,
+      },
+      { headers: { Authorization: `Bearer ${getAccessToken()}` } }
+    );
+    return res.data.data;
+  } catch (error) {
+    console.log(error.respond);
+  }
+};

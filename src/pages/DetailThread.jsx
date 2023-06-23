@@ -5,35 +5,37 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { Comment } from '../components/Comment';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncReceiveDetailThread } from '../states/detailThread/action';
+import {
+  asyncAddComment,
+  asyncReceiveDetailThread,
+} from '../states/detailThread/action';
 import TimeAgo from 'timeago-react';
 import parser from 'html-react-parser';
+import { useInput } from '../hooks/useInput';
 
 export const DetailThread = ({ authUser }) => {
   const { id } = useParams();
   const thread = useSelector((states) => states.detailThread);
   const dispatch = useDispatch();
-  const screenWidth = screen.width;
+  const [content, , setContentHTML] = useInput('Text');
 
   useEffect(() => {
     dispatch(asyncReceiveDetailThread({ id }));
   }, []);
 
+  const onSendHandler = () => {
+    dispatch(asyncAddComment({ threadId: thread.id, content }));
+  };
+
   if (!Object.keys(thread).length) {
     return <h1>Loading ...</h1>;
   }
-
-  // console.log(thread);
 
   return (
     <>
       <div className="flex flex-col gap-4 p-6 max-w-[800px] m-auto">
         <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
-          <div
-            className={
-              screenWidth < 600 ? `flex flex-col gap-2` : `flex justify-between`
-            }
-          >
+          <div className={`flex justify-between`}>
             <h3 className="text-lg font-bold text-primaryDark dark:text-white">
               {thread.title}
             </h3>
@@ -68,12 +70,18 @@ export const DetailThread = ({ authUser }) => {
           Comment ({thread.comments.length})
         </h2>
         <div className="flex gap-2 md:gap-4 bg-secondElevationDark p-3 rounded-xl">
-          <input
-            type="text"
+          <div
             placeholder="Write a comment"
-            className="bg-thirdElevationLight placeholder:font-bold font-bold dark:text-primaryLight dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"
+            className="bg-thirdElevationLight  dark:text-primaryLight dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"
+            contentEditable
+            onInput={(e) => {
+              setContentHTML(e);
+            }}
           />
-          <button className="pb-2 pt-3 px-4 bg-accentDark rounded-xl">
+          <button
+            className="pb-2 pt-3 px-4 bg-accentLight rounded-xl"
+            onClick={onSendHandler}
+          >
             <FontAwesomeIcon className="text-white" icon={faPaperPlane} />
           </button>
         </div>

@@ -42,9 +42,6 @@ export const Comment = ({
           isDownVote={isDownVote}
           threadId={threadId}
         />
-        <button className="text-bodyTextLight dark:text-bodyTextDark font-bold">
-          Reply
-        </button>
       </div>
     </div>
   );
