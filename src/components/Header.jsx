@@ -5,7 +5,7 @@ import React from 'react';
 export const Header = ({ name }) => {
   name = null;
   return (
-    <div className="flex justify-between my-6 w-[90%] max-w-[500px] mx-auto">
+    <div className="flex justify-between my-6 w-[90%] max-w-[500px] xl:max-w-[800px] mx-auto">
       <div>
         {name ? (
           <h2 className="font-bold text-2xl dark:text-white">Hi, {name}</h2>

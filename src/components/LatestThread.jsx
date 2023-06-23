@@ -51,12 +51,13 @@ export const LatestThread = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-3 w-[90%] max-w-[500px] m-auto  ">
+    <div className="flex flex-col gap-3 w-[90%] max-w-[500px] xl:max-w-[800px] m-auto  ">
       <h2 className="font-bold dark:text-white text-2xl">Latest Thread</h2>
       <div className="flex flex-col gap-3">
         {mockObj.map((thread, index) => (
           <Thread
             key={`thread-${index}`}
+            id={thread.id}
             title={thread.title}
             createdAt={thread.createdAt}
             body={thread.body}

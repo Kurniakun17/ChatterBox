@@ -15,7 +15,7 @@ export const RegisterInput = () => {
         }}
         type="text"
         placeholder="NAME"
-        className="bg-thirdElevationLight font-bold placeholder:font-bold dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"
+        className="bg-thirdElevationLight font-bold placeholder:font-bold dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm md:text-base dark:text-primaryLight"
       />
       <input
         value={email}
@@ -24,7 +24,7 @@ export const RegisterInput = () => {
         }}
         type="text"
         placeholder="EMAIL"
-        className="bg-thirdElevationLight font-bold placeholder:font-bold dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"
+        className="bg-thirdElevationLight font-bold placeholder:font-bold dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm md:text-base dark:text-primaryLight"
       />
       <input
         value={password}
@@ -33,7 +33,7 @@ export const RegisterInput = () => {
         }}
         type="password"
         placeholder="PASSWORD"
-        className="bg-thirdElevationLight font-bold placeholder:font-bold dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"
+        className="bg-thirdElevationLight font-bold placeholder:font-bold dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm md:text-base dark:text-primaryLight"
       />
     </div>
   );

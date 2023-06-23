@@ -41,7 +41,7 @@ export const DetailThread = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col gap-4 p-6">
+      <div className="flex flex-col gap-4 p-6 max-w-[800px] m-auto">
         <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
           <div className="flex justify-between">
             <h3 className="text-lg font-bold text-primaryDark dark:text-white">

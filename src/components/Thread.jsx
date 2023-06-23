@@ -27,7 +27,7 @@ export const Thread = ({
         </div>
         <p
           className={`${
-            clamp && 'line-clamp-3'
+            clamp && 'line-clamp-3 xl:line-clamp-6'
           } text-bodyTextLight dark:text-bodyTextDark`}
         >
           {body}
