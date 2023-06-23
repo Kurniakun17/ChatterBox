@@ -4,21 +4,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
-import parser from 'html-react-parser'
+import parser from 'html-react-parser';
 
 export const Thread = ({
   id,
   title,
   createdAt,
   body,
-  vote,
   author,
   totalComments,
   clamp,
   score,
   isUpVote,
-  isDownVote
+  isDownVote,
 }) => {
+  
   return (
     <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
       <Link to={`/thread/${id}`}>
@@ -27,7 +27,7 @@ export const Thread = ({
             {title}
           </h3>
           <h4 className="block ml-3 box-content text-bodyTextLight dark:text-bodyTextDark">
-            <TimeAgo datetime={createdAt}/>
+            <TimeAgo datetime={createdAt} />
           </h4>
         </div>
         <span
@@ -49,12 +49,18 @@ export const Thread = ({
               {totalComments}
             </h4>
           </div>
-          <Vote isUpVote={isUpVote} isDownVote={isDownVote} score={score}/>
+          
+          <Vote
+            threadId={id}
+            isUpVote={isUpVote}
+            isDownVote={isDownVote}
+            score={score}
+          />
         </div>
         <div className="flex gap-2">
-          <img src="/pfp.webp" alt="" className="w-6 h-6 rounded-full" />
+          <img src={author.avatar} alt="" className="w-6 h-6 rounded-full" />
           <h4 className="font-bold text-bodyTextLight dark:text-bodyTextDark">
-            {author}
+            {author.name}
           </h4>
         </div>
       </div>

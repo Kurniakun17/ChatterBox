@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncPreloadProcess } from './states/preload/action';
 import { Navbar } from './components/Navbar';
 
-
 function App() {
   const authUser = useSelector((states) => states.authUser);
   const preload = useSelector((states) => states.preload);
@@ -42,7 +41,10 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home authUser={authUser} />} />
         <Route path="/addThread" element={<NewThread />} />
-        <Route path="/thread/:id" element={<DetailThread />} />
+        <Route
+          path="/thread/:id"
+          element={<DetailThread authUser={authUser} />}
+        />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>

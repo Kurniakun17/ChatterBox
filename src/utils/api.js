@@ -90,6 +90,7 @@ export const APIupVoteThread = async ({ threadId }) => {
 
 export const APIdownVoteThread = async ({ threadId }) => {
   try {
+    console.log('kochi');
     const res = await axios.post(
       `${BASE_URL}/threads/${threadId}/down-vote`,
       {},
@@ -103,7 +104,7 @@ export const APIdownVoteThread = async ({ threadId }) => {
 export const APIneutralizeVoteThread = async ({ threadId }) => {
   try {
     const res = await axios.post(
-      `${BASE_URL}/threads/${threadId}/down-vote`,
+      `${BASE_URL}/threads/${threadId}/neutral-vote`,
       {},
       { headers: { Authorization: `Bearer ${getAccessToken()}` } }
     );

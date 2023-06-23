@@ -9,7 +9,7 @@ import { asyncReceiveDetailThread } from '../states/detailThread/action';
 import TimeAgo from 'timeago-react';
 import parser from 'html-react-parser';
 
-export const DetailThread = () => {
+export const DetailThread = ({ authUser }) => {
   const { id } = useParams();
   const thread = useSelector((states) => states.detailThread);
   const dispatch = useDispatch();
@@ -19,32 +19,13 @@ export const DetailThread = () => {
     dispatch(asyncReceiveDetailThread({ id }));
   }, []);
 
-  const dummyComments = [
-    {
-      id: '1',
-      title: 'First Comment',
-      createdAt: '3 days ago',
-      body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligulaas asdasdadasds asda sdasd asdasdasdasdasd asdasdaasd asdasdasd dsfadasd',
-      vote: 2,
-      author: 'Kurnia Kharisma',
-      totalComments: 28,
-    },
-    {
-      id: '1',
-      title: 'First Comment',
-      createdAt: '3 days ago',
-      body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligulaas asdasdadasds asda sdasd asdasdasdasdasd asdasdaasd asdasdasd dsfadasd',
-      vote: 0,
-      author: 'Kurnia Kharisma',
-      totalComments: 28,
-    },
-  ];
   if (!Object.keys(thread).length) {
     return <h1>Loading ...</h1>;
   }
 
+
   return (
-    <div>
+    <>
       <div className="flex flex-col gap-4 p-6 max-w-[800px] m-auto">
         <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
           <div
@@ -63,9 +44,14 @@ export const DetailThread = () => {
             {parser(thread.body)}
           </span>
           <div className="flex items-center justify-between">
-            <Vote score={thread.upVotesBy.length} />
+            <Vote
+              score={thread.upVotesBy.length - thread.downVotesBy.length}
+              isUpVote={thread.upVotesBy.includes(authUser.id)}
+              isDownVote={thread.downVotesBy.includes(authUser.id)}
+              threadId={thread.id}
+            />
             <div className="flex gap-2">
-              <img src="/pfp.webp" alt="" className="w-6 h-6 rounded-full" />
+              <img src={thread.owner.avatar} alt="" className="w-6 h-6 rounded-full" />
               <h4 className="font-bold text-bodyTextLight dark:text-bodyTextDark">
                 {thread.owner.name}
               </h4>
@@ -98,11 +84,11 @@ export const DetailThread = () => {
             author={comment.author}
             createdAt={comment.createdAt}
             content={comment.content}
-            score={comment.upVotesBy.length}
+            score={comment.upVotesBy.length - comment.downVotesBy.length}
             owner={comment.owner}
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };

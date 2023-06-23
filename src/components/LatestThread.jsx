@@ -14,9 +14,8 @@ export const LatestThread = ({ users, thread }) => {
               title={thread.title}
               createdAt={thread.createdAt}
               body={thread.body}
-              vote={thread.vote}
-              score={thread.upVotesBy.length}
-              author={thread.author}
+              score={thread.upVotesBy.length - thread.downVotesBy.length}
+              author={(users.filter((user)=>user.id === thread.ownerId))[0]}
               totalComments={thread.totalComments}
               clamp={true}
               isUpVote={thread.upVotesBy.includes(users.id)}

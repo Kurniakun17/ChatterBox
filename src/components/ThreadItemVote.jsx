@@ -1,13 +1,16 @@
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
   asyncDownVoteDetailThread,
   asyncUpVoteDetailThread,
 } from '../states/detailThread/action';
 
-export const Vote = ({ isUpVote, isDownVote, score, threadId, type }) => {
+export const ThreadItemVote = ({
+  isUpVote,
+  isDownVote,
+  score,
+  threadId,
+}) => {
   const dispatch = useDispatch();
 
   const toggleVote = (type) => {
