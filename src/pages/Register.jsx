@@ -1,6 +1,6 @@
 import React from 'react';
 import { RegisterInput } from '../components/RegisterInput';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useInput } from '../hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { asyncRegisterUser } from '../states/users/action';
@@ -10,9 +10,11 @@ export const Register = () => {
   const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onRegisterHandler = () => {
     dispatch(asyncRegisterUser({ name, email, password }));
+    navigate('/');
   };
 
   return (

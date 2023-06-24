@@ -6,7 +6,7 @@ import {
   APIneutralizeVoteComment,
   APIdownVoteComment,
   APIupVoteComment,
-  APIcreateComment,
+  APIaddComment,
 } from '../../utils/api';
 
 const ActionType = {
@@ -170,7 +170,7 @@ const asyncDownVoteComment = ({ threadId, commentId }) => {
 
 const asyncAddComment = ({ threadId, content }) => {
   return async (dispatch) => {
-    const { comment } = await APIcreateComment({ threadId, content });
+    const { comment } = await APIaddComment({ threadId, content });
     dispatch(addCommentActionCreator({ comment }));
   };
 };

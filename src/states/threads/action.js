@@ -1,4 +1,5 @@
 import {
+  APIaddThread,
   APIdownVoteThread,
   APIneutralizeVoteThread,
   APIupVoteThread,
@@ -8,6 +9,7 @@ export const ActionType = {
   RECEIVED_THREADS: 'RECEIVED_THREADS',
   UPVOTE_THREAD: 'UPVOTE_THREAD',
   DOWNVOTE_THREAD: 'DOWNVOTE_THREAD',
+  ADD_THREAD: 'ADD_THREAD',
 };
 
 export const receiveThreadsActionCreator = ({ threads }) => {
@@ -35,6 +37,15 @@ const downVoteThreadActionCreator = ({ threadId, userId }) => {
     payload: {
       threadId,
       userId,
+    },
+  };
+};
+
+const addThreadActionCreator = ({ threads }) => {
+  return {
+    type: ActionType.ADD_THREAD,
+    payload: {
+      threads,
     },
   };
 };
@@ -73,4 +84,12 @@ export const asyncDownVoteThread = ({ threadId }) => {
     console.log(error.respond);
     return {};
   }
+};
+
+export const asyncAddThread = ({ title, body, category }) => {
+  return async (dispatch) => {
+    const threads = await APIaddThread({ title, body, category });
+
+    dispatch(addThreadActionCreator({ threads }));
+  };
 };

@@ -5,6 +5,7 @@ import authUserReducer from './authUser/reducer';
 import { preloadReducer } from './preload/reducer';
 import { themeReducer } from './theme/reducer';
 import detailThreadReducer from './detailThread/reducer';
+import { loadingBarReducer } from 'react-redux-loading-bar';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     preload: preloadReducer,
     theme: themeReducer,
     detailThread: detailThreadReducer,
+    loadingBar: loadingBarReducer,
   },
 });
 

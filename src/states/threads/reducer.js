@@ -34,6 +34,8 @@ export default function threadsReducer(threads = [], action = {}) {
         }
         return thread;
       });
+    case ActionType.ADD_THREAD:
+      return [...threads, action.payload.threads];
     default:
       return threads;
   }

@@ -54,7 +54,6 @@ const detailThreadReducer = (thread = {}, action = {}) => {
         ...thread,
         comments: [...thread.comments, action.payload.comment],
       };
-      console.log(obj);
       return obj;
     case ActionType.DOWNVOTE_COMMENT:
       userId = action.payload.userId;

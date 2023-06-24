@@ -148,7 +148,7 @@ export const APIneutralizeVoteComment = async ({ threadId, commentId }) => {
   }
 };
 
-export const APIcreateComment = async ({ threadId, content }) => {
+export const APIaddComment = async ({ threadId, content }) => {
   try {
     const res = await axios.post(
       `${BASE_URL}/threads/${threadId}/comments`,
@@ -160,5 +160,27 @@ export const APIcreateComment = async ({ threadId, content }) => {
     return res.data.data;
   } catch (error) {
     console.log(error.respond);
+  }
+};
+
+export const APIaddThread = async ({ title, body, category }) => {
+  try {
+    const res = await axios.post(
+      BASE_URL + '/threads',
+      {
+        title,
+        body,
+        category,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      }
+    );
+    return res.data.data.thread;
+  } catch (error) {
+    console.log(error.respond);
+    return []
   }
 };

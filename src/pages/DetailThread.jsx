@@ -92,20 +92,23 @@ export const DetailThread = ({ authUser }) => {
             </h3>
           </div>
         )}
-        {thread.comments.map((comment, index) => (
-          <Comment
-            key={`comment-${index}`}
-            threadId={id}
-            author={comment.author}
-            createdAt={comment.createdAt}
-            content={comment.content}
-            score={comment.upVotesBy.length - comment.downVotesBy.length}
-            owner={comment.owner}
-            commentId={comment.id}
-            isUpVote={comment.upVotesBy.includes(authUser.id)}
-            isDownVote={comment.downVotesBy.includes(authUser.id)}
-          />
-        ))}
+        {
+          (thread.comments.sort((a, b) => b.createdAt - a.createdAt).
+          map((comment, index) => (
+            <Comment
+              key={`comment-${index}`}
+              threadId={id}
+              author={comment.author}
+              createdAt={comment.createdAt}
+              content={comment.content}
+              score={comment.upVotesBy.length - comment.downVotesBy.length}
+              owner={comment.owner}
+              commentId={comment.id}
+              isUpVote={comment.upVotesBy.includes(authUser.id)}
+              isDownVote={comment.downVotesBy.includes(authUser.id)}
+            />
+          )))
+        }
       </div>
     </>
   );

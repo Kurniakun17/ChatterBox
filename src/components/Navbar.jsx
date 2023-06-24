@@ -22,7 +22,7 @@ export const Navbar = ({ name, theme }) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-between bg-transparent px-6 py-4 border-b-[1px] border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
+    <div className="w-full flex items-center justify-between bg-transparent px-6 py-4 lg:px-12 border-b-[1px] border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
       <Link to="/home" className="text-white text-3xl font-bold logo-small">
         ChatterBox
       </Link>
