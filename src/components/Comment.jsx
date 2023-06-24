@@ -1,9 +1,9 @@
 import React from 'react';
-import { Vote } from './Vote';
 import parser from 'html-react-parser';
 import TimeAgo from 'timeago-react';
+import { Vote } from './Vote';
 
-export const Comment = ({
+export function Comment({
   threadId,
   commentId,
   createdAt,
@@ -12,7 +12,7 @@ export const Comment = ({
   owner,
   isUpVote,
   isDownVote,
-}) => {
+}) {
   return (
     <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
       <div className="flex justify-between">
@@ -30,7 +30,7 @@ export const Comment = ({
           <TimeAgo datetime={createdAt} />
         </h4>
       </div>
-      <p className={`text-bodyTextLight dark:text-bodyTextDark`}>
+      <p className="text-bodyTextLight dark:text-bodyTextDark">
         {parser(content)}
       </p>
       <div className="flex items-center justify-between">
@@ -45,4 +45,4 @@ export const Comment = ({
       </div>
     </div>
   );
-};
+}

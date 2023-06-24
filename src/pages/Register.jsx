@@ -1,11 +1,11 @@
 import React from 'react';
-import { RegisterInput } from '../components/RegisterInput';
 import { Link, useNavigate } from 'react-router-dom';
-import { useInput } from '../hooks/useInput';
 import { useDispatch } from 'react-redux';
+import { RegisterInput } from '../components/RegisterInput';
+import { useInput } from '../hooks/useInput';
 import { asyncRegisterUser } from '../states/users/action';
 
-export const Register = () => {
+export function Register() {
   const [name, setName] = useInput();
   const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
@@ -28,7 +28,7 @@ export const Register = () => {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
-        ></RegisterInput>
+        />
         <button
           onClick={onRegisterHandler}
           className="bg-accentLight dark:bg-accentLight text-white w-full rounded-3xl p-2 font-bold"
@@ -37,7 +37,7 @@ export const Register = () => {
         </button>
       </div>
       <p className="mt-4 dark:text-white">
-        Didn't have an account yet?{' '}
+        Didnt have an account yet?
         <Link
           className="text-accentLight font-bold underline decoration-solid"
           to="/login"
@@ -47,4 +47,4 @@ export const Register = () => {
       </p>
     </div>
   );
-};
+}

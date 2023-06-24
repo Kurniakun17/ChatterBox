@@ -1,10 +1,10 @@
 import React from 'react';
-import { useInput } from '../hooks/useInput';
 import { useDispatch } from 'react-redux';
-import { asyncAddThread } from '../states/threads/action';
 import { useNavigate } from 'react-router-dom';
+import { useInput } from '../hooks/useInput';
+import { asyncAddThread } from '../states/threads/action';
 
-export const NewThreadInput = () => {
+export function NewThreadInput() {
   const [title, setTitle] = useInput();
   const [category, setCategory] = useInput();
   const [body, setBody] = useInput();
@@ -55,4 +55,4 @@ export const NewThreadInput = () => {
       </button>
     </>
   );
-};
+}

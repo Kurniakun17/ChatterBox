@@ -1,6 +1,6 @@
 import { ActionType, getThemeFromLS } from './action';
 
-export const themeReducer = (theme = getThemeFromLS(), action = {}) => {
+const themeReducer = (theme = getThemeFromLS(), action = {}) => {
   switch (action.type) {
     case ActionType.CHANGE_THEME:
       if (action.payload.theme === 'light') {
@@ -18,3 +18,5 @@ export const themeReducer = (theme = getThemeFromLS(), action = {}) => {
       return theme;
   }
 };
+
+export default themeReducer;

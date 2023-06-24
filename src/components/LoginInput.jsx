@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInput } from '../hooks/useInput';
 
-export const LoginInput = ({ onLoginHandler }) => {
+export function LoginInput({ onLoginHandler }) {
   const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
 
@@ -37,4 +37,4 @@ export const LoginInput = ({ onLoginHandler }) => {
       </button>
     </>
   );
-};
+}

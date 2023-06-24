@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../hooks/useTheme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
@@ -10,7 +9,7 @@ import {
 } from '../states/authUser/action';
 import { changeThemeActionCreator } from '../states/theme/action';
 
-export const Navbar = ({ name, theme }) => {
+export function Navbar({ name, theme }) {
   const dispatch = useDispatch();
 
   const onLogoutHandler = () => {
@@ -51,10 +50,10 @@ export const Navbar = ({ name, theme }) => {
           </button>
         ) : (
           <button className="dark:text-white underline p-2">
-            <Link to={'/login'}>LOGIN</Link>
+            <Link to="/login">LOGIN</Link>
           </button>
         )}
       </div>
     </div>
   );
-};
+}

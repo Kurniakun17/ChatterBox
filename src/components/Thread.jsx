@@ -1,12 +1,12 @@
 import React from 'react';
-import { Vote } from './Vote';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import parser from 'html-react-parser';
+import { Vote } from './Vote';
 
-export const Thread = ({
+export function Thread({
   id,
   title,
   createdAt,
@@ -17,7 +17,7 @@ export const Thread = ({
   score,
   isUpVote,
   isDownVote,
-}) => {
+}) {
   return (
     <div className="flex flex-col gap-2 p-4 bg-secondElevationLight dark:bg-secondElevationDark rounded-xl">
       <Link to={`/thread/${id}`}>
@@ -53,7 +53,7 @@ export const Thread = ({
             isUpVote={isUpVote}
             isDownVote={isDownVote}
             score={score}
-            caller='THREAD'
+            caller="THREAD"
           />
         </div>
         <div className="flex gap-2">
@@ -65,4 +65,4 @@ export const Thread = ({
       </div>
     </div>
   );
-};
+}

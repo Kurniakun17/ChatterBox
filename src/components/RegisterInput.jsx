@@ -1,14 +1,13 @@
 import React from 'react';
-import { useInput } from '../hooks/useInput';
 
-export const RegisterInput = ({
+export function RegisterInput({
   name,
   setName,
   email,
   setEmail,
   password,
   setPassword,
-}) => {
+}) {
   return (
     <div className="flex flex-col gap-3">
       <input
@@ -40,4 +39,4 @@ export const RegisterInput = ({
       />
     </div>
   );
-};
+}

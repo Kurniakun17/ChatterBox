@@ -50,11 +50,10 @@ const detailThreadReducer = (thread = {}, action = {}) => {
         }),
       };
     case ActionType.ADD_COMMENT:
-      const obj = {
+      return {
         ...thread,
         comments: [...thread.comments, action.payload.comment],
       };
-      return obj;
     case ActionType.DOWNVOTE_COMMENT:
       userId = action.payload.userId;
       commentId = action.payload.commentId;

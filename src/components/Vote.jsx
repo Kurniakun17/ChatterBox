@@ -13,30 +13,30 @@ import {
   asyncUpVoteThread,
 } from '../states/threads/action';
 
-export const Vote = ({
+export function Vote({
   isUpVote,
   isDownVote,
   score,
   threadId,
   commentId = null,
   caller,
-}) => {
+}) {
   const dispatch = useDispatch();
 
   const toggleVote = (type) => {
     if (type === 'UPVOTE_CLICK') {
-      caller === 'DETAIL_THREAD' &&
-        dispatch(asyncUpVoteDetailThread({ threadId }));
+      caller === 'DETAIL_THREAD'
+        && dispatch(asyncUpVoteDetailThread({ threadId }));
       caller === 'THREAD' && dispatch(asyncUpVoteThread({ threadId }));
-      caller === 'COMMENT' &&
-        dispatch(asyncUpVoteComment({ threadId, commentId }));
+      caller === 'COMMENT'
+        && dispatch(asyncUpVoteComment({ threadId, commentId }));
       return;
     }
-    caller === 'DETAIL_THREAD' &&
-      dispatch(asyncDownVoteDetailThread({ threadId }));
+    caller === 'DETAIL_THREAD'
+    && dispatch(asyncDownVoteDetailThread({ threadId }));
     caller === 'THREAD' && dispatch(asyncDownVoteThread({ threadId }));
-    caller === 'COMMENT' &&
-      dispatch(asyncDownVoteComment({ threadId, commentId }));
+    caller === 'COMMENT'
+      && dispatch(asyncDownVoteComment({ threadId, commentId }));
   };
 
   return (
@@ -70,4 +70,4 @@ export const Vote = ({
       </button>
     </div>
   );
-};
+}

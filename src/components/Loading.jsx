@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import LoadingBar from 'react-redux-loading-bar';
 
-export const Loading = () => {
+export function Loading() {
   return (
-    <div>Loading</div>
-  )
+    <div className="sticky top-0 z-10">
+      <LoadingBar />
+    </div>
+  );
 }

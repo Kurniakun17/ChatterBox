@@ -10,9 +10,7 @@ module.exports = {
       env: {
         node: true,
       },
-      files: [
-        '.eslintrc.{js,cjs}',
-      ],
+      files: ['.eslintrc.{js,cjs,jsx}'],
       parserOptions: {
         sourceType: 'script',
       },
@@ -23,6 +21,11 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "import/no-extraneous-dependencies": off,
+    'no-unused-expressions': 'off',
+    'consistent-return': 'off',
+    'import/prefer-default-export': ['off', { target: 'any' }],
+    'comma-dangle': 'off',
+    'react/prop-types': 0,
+    'react/button-has-type': 0
   },
 };

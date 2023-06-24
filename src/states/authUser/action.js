@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { APILogin, APIgetOwnProfile, putAccessToken } from '../../utils/api';
 
 const ActionType = {
@@ -5,43 +6,41 @@ const ActionType = {
   UNSET_AUTH_USER: 'UNSET_AUTH_USER',
 };
 
-const setAuthUserActionCreator = (authUser) => {
-  return {
-    type: ActionType.SET_AUTH_USER,
-    payload: {
-      authUser,
-    },
-  };
+const setAuthUserActionCreator = (authUser) => ({
+  type: ActionType.SET_AUTH_USER,
+  payload: {
+    authUser,
+  },
+});
+
+const unsetAuthUserActionCreator = () => ({
+  type: ActionType.SET_AUTH_USER,
+  payload: {
+    authUser: null,
+  },
+});
+
+const asyncSetAuthUser = ({ email, password }) => async (dispatch) => {
+  dispatch(showLoading());
+  try {
+    const { data, status, message } = await APILogin({ email, password });
+    putAccessToken(data.token);
+
+    const authUser = await APIgetOwnProfile();
+    dispatch(setAuthUserActionCreator(authUser));
+    dispatch(hideLoading());
+    return { status, message };
+  } catch (error) {
+    dispatch(hideLoading());
+    return error;
+  }
 };
 
-const unsetAuthUserActionCreator = () => {
-  return {
-    type: ActionType.SET_AUTH_USER,
-    payload: {
-      authUser: null,
-    },
-  };
-};
-
-const asyncSetAuthUser = ({ email, password }) => {
-  return async (dispatch) => {
-    try {
-      const { data, status, message } = await APILogin({ email, password });
-      putAccessToken(data.token);
-
-      const authUser = await APIgetOwnProfile();
-      dispatch(setAuthUserActionCreator(authUser));
-    } catch (error) {
-      return error;
-    }
-  };
-};
-
-const asyncUnsetAuthUser = () => {
-  return (dispatch) => {
-    dispatch(unsetAuthUserActionCreator());
-    putAccessToken('');
-  };
+const asyncUnsetAuthUser = () => (dispatch) => {
+  dispatch(showLoading());
+  dispatch(unsetAuthUserActionCreator());
+  putAccessToken('');
+  dispatch(hideLoading());
 };
 
 export {
