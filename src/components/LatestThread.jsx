@@ -7,7 +7,7 @@ export function LatestThread({ authUser, users, threads }) {
       <h2 className="font-bold dark:text-white text-2xl">Latest Thread</h2>
       <div className="flex flex-col gap-3">
         {threads.length === 0 ? (
-          <div className="flex gap-2 justify-center md:gap-4 bg-secondElevationDark p-3 rounded-xl">
+          <div className="flex gap-2 justify-center md:gap-4 bg-secondElevationLight dark:bg-secondElevationDark p-3 rounded-xl">
             <h3 className="dark:text-primaryLight font-bold">
               Thread is Empty :)
             </h3>

@@ -70,10 +70,10 @@ export function DetailThread({ authUser }) {
         { thread.comments.length }
         )
       </h2>
-      <div className="flex gap-2 md:gap-4 bg-secondElevationDark p-3 rounded-xl">
+      <div className="flex gap-2 md:gap-4 bg-secondElevationLight dark:bg-secondElevationDark p-3 rounded-xl">
         <div
           placeholder="Write a comment"
-          className="bg-thirdElevationLight  dark:text-primaryLight dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"
+          className="bg-thirdElevationLight dark:text-primaryLight dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"
           contentEditable
           onInput={(e) => {
             setContentHTML(e);

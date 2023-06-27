@@ -18,6 +18,7 @@ export function Header({ name, onFilterThread }) {
           {name ? (
             <h2 className="font-bold text-2xl dark:text-white">
               Hi,
+              {' '}
               {name}
             </h2>
           ) : (
@@ -34,7 +35,7 @@ export function Header({ name, onFilterThread }) {
         </button>
       </div>
       {isSearchActive && (
-        <div className="flex gap-2 md:gap-4 bg-secondElevationDark p-3 rounded-xl">
+        <div className="flex gap-2 md:gap-4 bg-secondElevationLight dark:bg-secondElevationDark p-3 rounded-xl">
           <input
             placeholder="Search thread"
             className="bg-thirdElevationLight  dark:text-primaryLight dark:bg-thirdElevationDark w-full rounded-xl p-3 text-sm"

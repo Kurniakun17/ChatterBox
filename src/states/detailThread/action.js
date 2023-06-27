@@ -26,18 +26,16 @@ const receiveDetailThreadActionCreator = (detailThread) => ({
   },
 });
 
-const upVoteDetailThreadActionCreator = ({ detailThread, userId }) => ({
+const upVoteDetailThreadActionCreator = ({ userId }) => ({
   type: ActionType.UPVOTE_DETAIL_THREAD,
   payload: {
-    detailThread,
     userId,
   },
 });
 
-const downVoteDetailThreadActionCreator = ({ detailThread, userId }) => ({
+const downVoteDetailThreadActionCreator = ({ userId }) => ({
   type: ActionType.DOWNVOTE_DETAIL_THREAD,
   payload: {
-    detailThread,
     userId,
   },
 });
@@ -81,7 +79,7 @@ const asyncUpVoteDetailThread = ({ threadId }) => async (dispatch, getState) => 
   try {
     const { authUser, detailThread } = getState();
     dispatch(
-      upVoteDetailThreadActionCreator({ threadId, userId: authUser.id }),
+      upVoteDetailThreadActionCreator({ userId: authUser.id }),
     );
 
     if (detailThread.upVotesBy.includes(authUser.id)) {
@@ -101,7 +99,7 @@ const asyncDownVoteDetailThread = ({ threadId }) => async (dispatch, getState) =
   try {
     const { authUser, detailThread } = getState();
     dispatch(
-      downVoteDetailThreadActionCreator({ threadId, userId: authUser.id }),
+      downVoteDetailThreadActionCreator({ userId: authUser.id }),
     );
 
     if (detailThread.downVotesBy.includes(authUser.id)) {

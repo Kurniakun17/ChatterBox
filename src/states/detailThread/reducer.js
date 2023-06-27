@@ -49,11 +49,6 @@ const detailThreadReducer = (thread = {}, action = {}) => {
           return comment;
         }),
       };
-    case ActionType.ADD_COMMENT:
-      return {
-        ...thread,
-        comments: [...thread.comments, action.payload.comment],
-      };
     case ActionType.DOWNVOTE_COMMENT:
       userId = action.payload.userId;
       commentId = action.payload.commentId;
@@ -73,6 +68,11 @@ const detailThreadReducer = (thread = {}, action = {}) => {
           }
           return comment;
         }),
+      };
+    case ActionType.ADD_COMMENT:
+      return {
+        ...thread,
+        comments: [...thread.comments, action.payload.comment],
       };
     default:
       return thread;
