@@ -1,19 +1,13 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { useInput } from '../hooks/useInput';
-import { asyncAddThread } from '../states/threads/action';
 
-export function NewThreadInput() {
+export function NewThreadInput({ onPostHandler }) {
   const [title, setTitle] = useInput();
   const [category, setCategory] = useInput();
   const [body, setBody] = useInput();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const onPostHandler = () => {
-    dispatch(asyncAddThread({ title, body, category }));
-    navigate('/home');
+  const onPostClickHandler = () => {
+    onPostHandler({ title, body, category });
   };
 
   return (
@@ -48,7 +42,8 @@ export function NewThreadInput() {
         />
       </div>
       <button
-        onClick={onPostHandler}
+        onClick={onPostClickHandler}
+        alt
         className="bg-accentLight dark:bg-accentLight text-white w-full mt-2 rounded-3xl p-2 font-bold"
       >
         POST

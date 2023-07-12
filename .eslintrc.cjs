@@ -4,11 +4,15 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  Plugin:[
+    "cypress"
+  ],
   extends: 'airbnb',
   overrides: [
     {
       env: {
         node: true,
+        "cypress/globals": true,
       },
       files: ['.eslintrc.{js,cjs,jsx}'],
       parserOptions: {
