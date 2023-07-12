@@ -15,7 +15,7 @@ export const API = (() => {
       const res = await axios.post(`${BASE_URL}/login`, { email, password });
       return res.data;
     } catch (error) {
-      return { ...error.respond };
+      alert(error.response.data.message);
     }
   };
 

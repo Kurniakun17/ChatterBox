@@ -20,7 +20,7 @@ const unsetAuthUserActionCreator = () => ({
   },
 });
 
-const asyncSetAuthUser = ({ email, password }) => async (dispatch) => {
+const asyncSetAuthUser = ({ email ='', password='' }) => async (dispatch) => {
   dispatch(showLoading());
   try {
     const { data, status, message } = await API.Login({ email, password });
