@@ -1,4 +1,4 @@
-import { APIRegister } from '../../utils/api';
+import { API } from '../../utils/api';
 
 const ActionType = {
   RECIEVE_USERS: 'RECIEVE_USERS',
@@ -13,7 +13,7 @@ const receiveUsersActionCreator = ({ users }) => ({
 
 const asyncRegisterUser = ({ name, email, password }) => async () => {
   try {
-    await APIRegister({ name, email, password });
+    await API.Register({ name, email, password });
   } catch (error) {
     return error;
   }

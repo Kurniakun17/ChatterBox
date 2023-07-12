@@ -1,14 +1,5 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import {
-  APIgetDetailThread,
-  APIupVoteThread,
-  APIdownVoteThread,
-  APIneutralizeVoteThread,
-  APIneutralizeVoteComment,
-  APIdownVoteComment,
-  APIupVoteComment,
-  APIaddComment,
-} from '../../utils/api';
+import { API } from '../../utils/api';
 
 const ActionType = {
   RECEIVE_DETAIL_THREAD: 'RECEIVE_DETAIL_THREAD',
@@ -66,7 +57,7 @@ const addCommentActionCreator = ({ comment }) => ({
 const asyncReceiveDetailThread = ({ id }) => async (dispatch) => {
   dispatch(showLoading());
   try {
-    const detailThread = await APIgetDetailThread({ id });
+    const detailThread = await API.getDetailThread({ id });
     dispatch(receiveDetailThreadActionCreator(detailThread));
   } catch (error) {
     return {};
@@ -78,14 +69,12 @@ const asyncUpVoteDetailThread = ({ threadId }) => async (dispatch, getState) => 
   dispatch(showLoading());
   try {
     const { authUser, detailThread } = getState();
-    dispatch(
-      upVoteDetailThreadActionCreator({ userId: authUser.id }),
-    );
+    dispatch(upVoteDetailThreadActionCreator({ userId: authUser.id }));
 
     if (detailThread.upVotesBy.includes(authUser.id)) {
-      await APIneutralizeVoteThread({ threadId });
+      await API.neutralizeVoteThread({ threadId });
     } else {
-      await APIupVoteThread({ threadId });
+      await API.upVoteThread({ threadId });
     }
   } catch (error) {
     dispatch(hideLoading());
@@ -98,14 +87,12 @@ const asyncDownVoteDetailThread = ({ threadId }) => async (dispatch, getState) =
   dispatch(showLoading());
   try {
     const { authUser, detailThread } = getState();
-    dispatch(
-      downVoteDetailThreadActionCreator({ userId: authUser.id }),
-    );
+    dispatch(downVoteDetailThreadActionCreator({ userId: authUser.id }));
 
     if (detailThread.downVotesBy.includes(authUser.id)) {
-      await APIneutralizeVoteThread({ threadId });
+      await API.neutralizeVoteThread({ threadId });
     } else {
-      await APIdownVoteThread({ threadId });
+      await API.downVoteThread({ threadId });
     }
   } catch (error) {
     dispatch(hideLoading());
@@ -119,14 +106,14 @@ const asyncUpVoteComment = ({ threadId, commentId }) => async (dispatch, getStat
   try {
     const { authUser, detailThread } = getState();
     const comment = detailThread.comments.filter(
-      (commentItem) => commentItem.id === commentId,
+      (commentItem) => commentItem.id === commentId
     )[0];
     dispatch(upVoteCommentActionCreator({ userId: authUser.id, commentId }));
 
     if (comment.upVotesBy.includes(authUser.id)) {
-      await APIneutralizeVoteComment({ threadId, commentId });
+      await API.neutralizeVoteComment({ threadId, commentId });
     } else {
-      await APIupVoteComment({ threadId, commentId });
+      await API.upVoteComment({ threadId, commentId });
     }
   } catch (error) {
     dispatch(hideLoading());
@@ -150,9 +137,9 @@ const asyncDownVoteComment = ({ threadId, commentId }) => async (dispatch, getSt
     );
 
     if (comment.downVotesBy.includes(authUser.id)) {
-      await APIneutralizeVoteComment({ threadId, commentId });
+      await API.neutralizeVoteComment({ threadId, commentId });
     } else {
-      await APIdownVoteComment({ threadId, commentId });
+      await API.downVoteComment({ threadId, commentId });
     }
   } catch (error) {
     dispatch(hideLoading());
@@ -164,7 +151,7 @@ const asyncDownVoteComment = ({ threadId, commentId }) => async (dispatch, getSt
 const asyncAddComment = ({ threadId, content }) => async (dispatch) => {
   dispatch(showLoading());
   try {
-    const { comment } = await APIaddComment({ threadId, content });
+    const { comment } = await API.addComment({ threadId, content });
     dispatch(addCommentActionCreator({ comment }));
   } catch (error) {
     dispatch(hideLoading());

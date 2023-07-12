@@ -1,10 +1,5 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import {
-  APIaddThread,
-  APIdownVoteThread,
-  APIneutralizeVoteThread,
-  APIupVoteThread,
-} from '../../utils/api';
+import { API } from '../../utils/api';
 
 export const ActionType = {
   RECEIVED_THREADS: 'RECEIVED_THREADS',
@@ -46,13 +41,15 @@ const addThreadActionCreator = ({ threads }) => ({
 export const asyncUpVoteThread = ({ threadId }) => async (dispatch, getState) => {
   try {
     const { authUser, threads } = getState();
-    const thread = threads.filter((threadItem) => threadItem.id === threadId)[0];
+    const thread = threads.filter(
+      (threadItem) => threadItem.id === threadId
+    )[0];
     dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
 
     if (thread.upVotesBy.includes(authUser.id)) {
-      return await APIneutralizeVoteThread({ threadId });
+      return await API.neutralizeVoteThread({ threadId });
     }
-    await APIupVoteThread({ threadId });
+    await API.upVoteThread({ threadId });
   } catch (error) {
     return { ...error.respond };
   }
@@ -62,13 +59,15 @@ export const asyncDownVoteThread = ({ threadId }) => async (dispatch, getState) 
   try {
     dispatch(showLoading());
     const { authUser, threads } = getState();
-    const thread = threads.filter((threadItem) => threadItem.id === threadId)[0];
+    const thread = threads.filter(
+      (threadItem) => threadItem.id === threadId
+    )[0];
     dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }));
 
     if (thread.downVotesBy.includes(authUser.id)) {
-      await APIneutralizeVoteThread({ threadId });
+      await API.neutralizeVoteThread({ threadId });
     } else {
-      await APIdownVoteThread({ threadId });
+      await API.downVoteThread({ threadId });
     }
   } catch (error) {
     dispatch(hideLoading());
@@ -79,7 +78,7 @@ export const asyncDownVoteThread = ({ threadId }) => async (dispatch, getState) 
 
 export const asyncAddThread = ({ title, body, category }) => async (dispatch) => {
   dispatch(showLoading());
-  const threads = await APIaddThread({ title, body, category });
+  const threads = await API.addThread({ title, body, category });
 
   dispatch(addThreadActionCreator({ threads }));
   dispatch(hideLoading());

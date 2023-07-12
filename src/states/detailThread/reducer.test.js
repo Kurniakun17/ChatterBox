@@ -33,6 +33,7 @@ describe('talk reducers function', () => {
         },
       ],
     };
+
     const action = {
       type: ActionType.RECEIVE_DETAIL_THREAD,
       payload: {
@@ -378,6 +379,59 @@ describe('talk reducers function', () => {
 
   it('Should return detailThread with a comment that has no userId on the downVotesBy when DOWNVOTE_COMMENT were given', () => {
     const userId = 'users-1';
+    const commentId = 'comment-1';
+    const initialState = {
+      id: 'thread-1',
+      title: 'Thread Pertama',
+      body: 'Ini adalah thread pertama',
+      category: 'General',
+      createdAt: '2021-06-21T07:00:00.000Z',
+      owner: {
+        id: userId,
+        name: 'John Doe',
+        avatar: 'https://generated-image-url.jpg',
+      },
+      upVotesBy: [],
+      downVotesBy: [],
+      comments: [
+        {
+          id: commentId,
+          content: 'Ini adalah komentar pertama',
+          createdAt: '2021-06-21T07:00:00.000Z',
+          owner: {
+            id: 'users-1',
+            name: 'John Doe',
+            avatar: 'https://generated-image-url.jpg',
+          },
+          upVotesBy: [],
+          downVotesBy: [userId],
+        },
+      ],
+    };
+
+    const action = {
+      type: ActionType.DOWNVOTE_COMMENT,
+      payload: {
+        userId,
+        commentId
+      },
+    };
+
+    const nextState = detailThreadReducer(initialState, action);
+
+    expect(nextState).toEqual({
+      ...initialState,
+      comments: initialState.comments.map((comment) => {
+        if (comment.id === commentId) {
+          return { ...comment, upVotesBy: [], downVotesBy: [] };
+        }
+        return comment;
+      }),
+    });
+  });
+
+  it('Should return detailThread with a new comment in it', () => {
+    const userId = 'users-1';
     const newComment = {
       id: 'comment-2',
       content: 'Hi, I Miss You',
@@ -430,7 +484,8 @@ describe('talk reducers function', () => {
     const nextState = detailThreadReducer(initialState, action);
 
     expect(nextState).toEqual({
-      ...initialState, comments: [...initialState.comments, newComment]
+      ...initialState,
+      comments: [...initialState.comments, newComment],
     });
   });
 });

@@ -1,4 +1,4 @@
-import { APIgetOwnProfile } from '../../utils/api';
+import { API } from '../../utils/api';
 import { setAuthUserActionCreator } from '../authUser/action';
 
 export const ActionType = {
@@ -14,7 +14,7 @@ export const setPreloadActionCreator = (preload) => ({
 
 export const asyncPreloadProcess = () => async (dispatch) => {
   try {
-    const authUser = await APIgetOwnProfile();
+    const authUser = await API.getOwnProfile();
     dispatch(setAuthUserActionCreator(authUser));
   } catch (error) {
     dispatch(setAuthUserActionCreator(null));
