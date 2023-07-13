@@ -3,7 +3,7 @@ import { ActionType } from './action';
 import detailThreadReducer from './reducer';
 
 describe('talk reducers function', () => {
-  it.skip('Should return the detailThreads when RECEIVE_DETAIL_THREAD were given', () => {
+  it('Should return the detailThreads when RECEIVE_DETAIL_THREAD were given', () => {
     const initialState = {};
     const detailThread = {
       id: 'thread-1',
@@ -46,7 +46,7 @@ describe('talk reducers function', () => {
     expect(nextState).toEqual(action.payload.detailThread);
   });
 
-  it.skip('Should return detailThread with userId in the upVotesBy key when UPVOTE_DETAIL_THREAD were given', () => {
+  it('Should return detailThread with userId in the upVotesBy key when UPVOTE_DETAIL_THREAD were given', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -89,7 +89,7 @@ describe('talk reducers function', () => {
     expect(nextState).toEqual({ ...initialState, upVotesBy: [userId] });
   });
 
-  it.skip('Should return detailThread with no userId in the upVotesBy key when UPVOTE_DETAIL_THREAD were given', () => {
+  it('Should return detailThread with no userId in the upVotesBy key when UPVOTE_DETAIL_THREAD were given', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
