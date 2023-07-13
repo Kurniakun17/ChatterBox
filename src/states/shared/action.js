@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { API } from '../../utils/api';
 import { receiveThreadsActionCreator } from '../threads/action';
 import { receiveUsersActionCreator } from '../users/action';

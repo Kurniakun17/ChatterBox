@@ -13,6 +13,14 @@ const user = {
   avatar: 'https://generated-image-url.jpg',
 };
 
+/**
+* test scenario for preload
+*
+* - preloadThunk function
+*  - Should dispatch the correct action when asyncpreloadprocess called successfully
+*  - Should dispatch the correct action when asyncpreloadprocess called failed
+*/
+
 describe('preload thunk test', () => {
   beforeEach(() => {
     API._getOwnProfile = API.getOwnProfile;

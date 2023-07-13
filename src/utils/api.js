@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-alert */
 import axios from 'axios';
 
 export const BASE_URL = 'https://forum-api.dicoding.dev/v1';

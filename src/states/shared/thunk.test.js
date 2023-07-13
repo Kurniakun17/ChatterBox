@@ -61,6 +61,14 @@ const errorRespond = {
   respond: 'fetch failed',
 };
 
+/**
+* test scenario for shared
+*
+* - sharedThunk function
+*  - should dispatch action correctly when action run successfully
+*  - should return correctly when action run failed
+*/
+
 describe('Shared action thunk test', () => {
   beforeEach(() => {
     API._getUsers = API.getUsers;
@@ -75,7 +83,7 @@ describe('Shared action thunk test', () => {
     delete API._getThread;
   });
 
-  it('Should dispatch action correctly when action run successfully ', async () => {
+  it('Should dispatch action correctly when action run successfully', async () => {
     API.getThread = () => Promise.resolve(threads);
     API.getUsers = () => Promise.resolve(users);
 
