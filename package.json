@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "PORT=5173 react-scripts start",
     "dev": "vite",
     "build": "vite build",
     "test": "vitest",
@@ -25,6 +26,7 @@
     "react-redux": "^8.1.0",
     "react-redux-loading-bar": "^5.0.4",
     "react-router-dom": "^6.13.0",
+    "react-scripts": "^5.0.1",
     "timeago-react": "^3.0.6"
   },
   "devDependencies": {
