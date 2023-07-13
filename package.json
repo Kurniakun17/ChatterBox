@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "PORT=5173 react-scripts start",
+    "start": "PORT=5173 react-scripts dev",
     "dev": "vite",
     "build": "vite build",
     "test": "vitest",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "e2e": "cypress run",
-    "ci:test": "vitest --no-watch && start-server-and-test dev http-get://0.0.0.0:5173 e2e"
+    "ci:test": "vitest --no-watch && start-server-and-test dev http-get://localhost:5173 e2e"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
