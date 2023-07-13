@@ -11,5 +11,5 @@ export const useInput = (initialValue = '') => {
     setValue(target.innerHTML);
   };
 
-  return [value];
+  return [value, onChangeHandler, onDivChangeHandler];
 };
