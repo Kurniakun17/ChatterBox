@@ -7,6 +7,14 @@ import { receiveThreadsActionCreator } from '../threads/action';
 import { receiveUsersActionCreator } from '../users/action';
 import { API } from '../../utils/api';
 
+/**
+* test scenario for shared
+*
+* - sharedThunk function
+*  - should dispatch action correctly when action run successfully
+*  - should return correctly when action run failed
+*/
+
 const threads = {
   threads: [
     {
@@ -60,14 +68,6 @@ const users = {
 const errorRespond = {
   respond: 'fetch failed',
 };
-
-/**
-* test scenario for shared
-*
-* - sharedThunk function
-*  - should dispatch action correctly when action run successfully
-*  - should return correctly when action run failed
-*/
 
 describe('Shared action thunk test', () => {
   beforeEach(() => {

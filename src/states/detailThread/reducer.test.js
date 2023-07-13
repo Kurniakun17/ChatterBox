@@ -1,8 +1,25 @@
+/* eslint-disable max-len */
 import { describe, expect, it } from 'vitest';
 import { ActionType } from './action';
 import detailThreadReducer from './reducer';
 
-describe('talk reducers function', () => {
+/**
+ * test scenario for detailThreads
+ *
+ *  - detailThreadReducer function
+ *    - Should return the detailThreads when RECEIVE_DETAIL_THREAD were given
+ *    - Should return detailThread with userId in the upVotesBy key when UPVOTE_DETAIL_THREAD were given
+ *    - Should return detailThread with no userId in the upVotesBy key when UPVOTE_DETAIL_THREAD were given
+ *    - Should return detailThread with userId in the downVotesBy key when DOWNVOTE_DETAIL_THREAD were given
+ *    - Should return detailThread with no userId in the downVotesBy key when DOWNVOTE_DETAIL_THREAD were given
+ *    - Should return detailThread with a comment that has been upvoted by the user when UPVOTE_COMMENT were given
+ *    - Should return detailThread with a comment that has no userId on the upVotesBy when UPVOTE_COMMENT were given
+ *    - Should return detailThread with a comment that has userId on the downVotesBy when DOWNVOTE_THREAD were given
+ *    - Should return detailThread with a comment that has no userId on the downVotesBy when DOWNVOTE_COMMENT were given
+ *    - Should return detailThread with a new comment in it
+ */
+
+describe('detailThreadReducer function', () => {
   it('Should return the detailThreads when RECEIVE_DETAIL_THREAD were given', () => {
     const initialState = {};
     const detailThread = {
@@ -132,7 +149,7 @@ describe('talk reducers function', () => {
     expect(nextState).toEqual({ ...initialState, upVotesBy: [] });
   });
 
-  it('Should return detailThread with userId in the downVotesBy key when UPVOTE_DETAIL_THREAD were given', () => {
+  it('Should return detailThread with userId in the downVotesBy key when DOWNVOTE_DETAIL_THREAD were given', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -175,7 +192,7 @@ describe('talk reducers function', () => {
     expect(nextState).toEqual({ ...initialState, downVotesBy: [userId] });
   });
 
-  it('Should return detailThread with userId in the downVotesBy key when UPVOTE_DETAIL_THREAD were given', () => {
+  it('Should return detailThread with no userId in the downVotesBy key when DOWNVOTE_DETAIL_THREAD were given', () => {
     const userId = 'users-1';
     const initialState = {
       id: 'thread-1',
@@ -413,7 +430,7 @@ describe('talk reducers function', () => {
       type: ActionType.DOWNVOTE_COMMENT,
       payload: {
         userId,
-        commentId
+        commentId,
       },
     };
 

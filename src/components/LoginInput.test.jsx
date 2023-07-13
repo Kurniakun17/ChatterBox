@@ -9,6 +9,13 @@ import { LoginInput } from './LoginInput';
 
 expect.extend(matchers);
 
+/**
+* test scenario for LoginInput
+*
+* - LoginInput component
+*  - Should post a correct data when login button clicked
+*/
+
 describe('LoginInput Component Test', () => {
   afterEach(() => {
     cleanup();

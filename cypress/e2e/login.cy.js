@@ -1,3 +1,16 @@
+/* eslint-disable max-len */
+/* eslint-disable no-undef */
+
+/**
+ * test scenario for user login flow
+ *
+ *  - The criteria of success on this test:
+ *    - should display login page correctly
+ *    - should display alert when email empty
+ *    - should display alert when password empty
+ *    - should visit homepage when login sucess
+ */
+
 describe('template spec', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173/login');
@@ -38,6 +51,6 @@ describe('template spec', () => {
       .contains(/^LOG IN$/)
       .click();
 
-    cy.get('button').contains('LOGOUT').should('be.visible')
+    cy.get('button').contains('LOGOUT').should('be.visible');
   });
 });

@@ -9,6 +9,13 @@ import { NewThreadInput } from './NewThreadInput';
 
 expect.extend(matchers);
 
+/**
+* test scenario for NewThreadInput
+*
+* - NewThreadInput component
+*  - Should post a correct data when post button clicked
+*/
+
 describe('NewthreadInput Component Test', () => {
   afterEach(() => {
     cleanup();
